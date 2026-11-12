@@ -3,937 +3,323 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Learning INDEX & MATCH · Toko Nusantara Mart</title>
+<title>Learn INDEX & MATCH · Toko Nusantara Mart</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f2f8f4;--card:rgba(255,255,255,.82);--solid:#fff;--ink:#14261c;--mute:#5a6e62;--line:#d3e3d9;--g:#14915a;--on:#fff;--gl:#dff5e9;--err:#c2332b;--errl:#fdeceb;--wl:#fff3d6;--w:#8a5a00;--b1:#bff0d6;--b2:#cfe3ff;--sh:0 12px 32px rgba(20,90,55,.12);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1410;--card:rgba(24,38,30,.82);--solid:#16241c;--ink:#e6f1ea;--mute:#9bb3a5;--line:#2c4235;--g:#4fd08e;--on:#07170e;--gl:#1b3a2a;--err:#ff8f86;--errl:#3b1f1d;--wl:#3b2f10;--w:#ffd27a;--b1:#12392a;--b2:#14284a;--sh:0 12px 32px rgba(0,0,0,.4)}}
-:root[data-theme="dark"]{--bg:#0b1410;--card:rgba(24,38,30,.82);--solid:#16241c;--ink:#e6f1ea;--mute:#9bb3a5;--line:#2c4235;--g:#4fd08e;--on:#07170e;--gl:#1b3a2a;--err:#ff8f86;--errl:#3b1f1d;--wl:#3b2f10;--w:#ffd27a;--b1:#12392a;--b2:#14284a;--sh:0 12px 32px rgba(0,0,0,.4)}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
+:root{--bg:#f4f7fb;--card:#fff;--ink:#0f172a;--mute:#64748b;--line:#e2e8f0;--soft:#f1f5f9;--ac:#10b981;--ac2:#06b6d4;--vi:#7c3aed;--okb:#dcfce7;--okt:#166534;--nob:#fee2e2;--not:#991b1b;--skb:#fef3c7;--skt:#92400e;--hl:#fde68a;--sh:0 10px 30px rgba(15,23,42,.08);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1120;--card:#131c31;--ink:#e8eefc;--mute:#94a3b8;--line:#243049;--soft:#1a2540;--okb:#12352a;--okt:#86efac;--nob:#3b1d22;--not:#fca5a5;--skb:#3a2f12;--skt:#fcd34d;--hl:#5b4a0c;--sh:0 10px 30px rgba(0,0,0,.4)}}
+:root[data-theme="dark"]{--bg:#0b1120;--card:#131c31;--ink:#e8eefc;--mute:#94a3b8;--line:#243049;--soft:#1a2540;--okb:#12352a;--okt:#86efac;--nob:#3b1d22;--not:#fca5a5;--skb:#3a2f12;--skt:#fcd34d;--hl:#5b4a0c;--sh:0 10px 30px rgba(0,0,0,.4)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
 *{box-sizing:border-box}
-body{margin:0;color:var(--ink);font:16px/1.65 system-ui,"Segoe UI",Roboto,sans-serif;background:radial-gradient(800px 480px at 95% -5%,var(--b1),transparent 65%),radial-gradient(700px 500px at -10% 25%,var(--b2),transparent 65%),var(--bg);background-attachment:fixed}
-main{max-width:880px;margin:0 auto;padding:16px 16px 56px}
-.hero{position:relative;overflow:hidden;color:#fff;border-radius:26px;padding:22px 24px 26px;background:linear-gradient(135deg,#0e8a55,#0f7f9a 55%,#6b45c9);box-shadow:var(--sh)}
-.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.12)}
-.hero:before{width:260px;height:260px;right:-70px;top:-90px}
-.hero:after{width:150px;height:150px;right:90px;bottom:-80px}
+body{margin:0;color:var(--ink);background:var(--bg);font:16px/1.65 "Plus Jakarta Sans",system-ui,"Segoe UI",Roboto,sans-serif}
+main{max-width:920px;margin:0 auto;padding:14px 16px 60px}
+.hero{position:relative;overflow:hidden;color:#fff;border-radius:28px;padding:20px 26px 28px;background:radial-gradient(circle at 85% 0,#7c3aed 0,transparent 55%),linear-gradient(135deg,#059669,#0891b2);box-shadow:var(--sh)}
+.hero:after{content:"";position:absolute;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.1);right:-60px;bottom:-110px}
 .hero>*{position:relative;z-index:1}
 .top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
-.brand{font-weight:700;letter-spacing:.02em}
+.brand{font-weight:800;letter-spacing:.01em}
 .tools{display:flex;gap:8px;align-items:center}
 .seg{display:inline-flex;background:rgba(255,255,255,.2);border-radius:999px;padding:3px}
-.seg button{background:transparent;color:#fff;padding:6px 16px;border-radius:999px;font-size:.85rem}
-.seg button[aria-pressed=true]{background:#fff;color:#0e6b45}
-.ic{background:rgba(255,255,255,.2);color:#fff;border-radius:999px;width:38px;height:38px;padding:0}
-h1{font-size:clamp(1.7rem,5vw,2.4rem);line-height:1.15;margin:18px 0 8px}
-.sub{margin:0 0 16px;max-width:60ch}
-.tp{display:inline-block;background:rgba(255,255,255,.2);border-radius:14px;padding:10px 14px;margin:0}
-section{background:var(--card);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:22px;padding:22px;margin:20px 0;box-shadow:var(--sh)}
-h2{display:flex;align-items:center;gap:10px;font-size:1.3rem;margin:0 0 .6em}
-h2 i{font-style:normal;display:grid;place-items:center;flex:none;width:32px;height:32px;border-radius:10px;color:#fff;font-size:.95rem;background:linear-gradient(135deg,#14b87a,#0f7f9a)}
-.tw{overflow-x:auto;border:1px solid var(--line);border-radius:14px;margin:12px 0}
-table{border-collapse:collapse;min-width:100%}
-th,td{padding:10px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.seg button{background:transparent;color:#fff;padding:6px 14px;font-size:.82rem;border-radius:999px}
+.seg button[aria-pressed=true]{background:#fff;color:#047857}
+.ic{background:rgba(255,255,255,.2)!important;color:#fff;width:36px;height:36px;padding:0!important;border-radius:50%!important}
+h1{font-size:clamp(1.8rem,5.5vw,2.7rem);line-height:1.12;margin:22px 0 10px;letter-spacing:-.02em}
+.sub{margin:0 0 16px;max-width:56ch;opacity:.95}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pills span{background:rgba(255,255,255,.18);backdrop-filter:blur(6px);border-radius:999px;padding:5px 14px;font-size:.84rem;font-weight:600}
+section{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:24px;margin:20px 0;box-shadow:var(--sh)}
+h2{display:flex;align-items:center;gap:12px;font-size:1.35rem;margin:0 0 .5em;letter-spacing:-.01em}
+h2 i{font-style:normal;display:grid;place-items:center;flex:none;width:34px;height:34px;border-radius:11px;color:#fff;font-size:.95rem;background:linear-gradient(135deg,var(--ac),var(--ac2))}
+p{margin:.4em 0}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:16px;margin:12px 0}
+table{border-collapse:collapse;min-width:100%;font-size:.92rem}
+th,td{padding:9px 14px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
 tr:last-child td{border-bottom:0}
-th{background:var(--gl)}
-.note{color:var(--mute);font-size:.9rem}
-.ctl{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:14px 0}
-label{display:block;font-size:.85rem;font-weight:600;color:var(--mute);margin-bottom:6px}
-select{width:100%;font:inherit;color:var(--ink);padding:10px 12px;border:1.5px solid var(--line);border-radius:12px;background:var(--solid)}
-button{font:inherit;font-weight:600;border:0;cursor:pointer;border-radius:12px;padding:10px 18px;color:var(--on);background:var(--g);transition:transform .15s,border-color .15s}
-button:hover:not(:disabled){transform:translateY(-1px)}
-button:focus-visible,select:focus-visible{outline:3px solid var(--g);outline-offset:2px}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{background:var(--solid);color:var(--ink);border:1.5px solid var(--line);border-radius:999px;padding:8px 16px}
-.chip[aria-pressed=true]{background:linear-gradient(135deg,#14b87a,#0f7f9a);color:#fff;border-color:transparent;box-shadow:0 6px 16px rgba(15,127,154,.3)}
-.formula-box{background:var(--solid);border:1.5px solid var(--line);border-radius:16px;padding:16px;margin:14px 0;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:0.95rem;overflow-x:auto;box-shadow:inset 0 2px 4px rgba(0,0,0,0.02)}
-.formula-code{color:var(--g);font-weight:700}
-.res{display:flex;gap:10px;margin-top:10px;padding:12px 14px;border-radius:14px;background:var(--gl)}
-.res.mid{background:var(--wl);color:var(--w)}.res.no{background:var(--errl);color:var(--err)}
-.bd{flex:none;width:26px;text-align:center;font-weight:800;font-size:1.1rem}
-.bar{height:10px;background:var(--line);border-radius:99px;overflow:hidden;margin-bottom:16px}
-.bar i{display:block;height:100%;background:linear-gradient(90deg,#14b87a,#0f7f9a);border-radius:99px;transition:width .4s}
-.opt{display:block;width:100%;text-align:left;background:var(--solid);color:var(--ink);border:1.5px solid var(--line);margin:8px 0;font-weight:500}
-.opt:hover:not(:disabled){border-color:var(--g)}
-.opt:disabled{cursor:default}
-.opt.ok{background:var(--gl);border-color:var(--g)}.opt.no{background:var(--errl);border-color:var(--err)}
-.fb{margin:12px 0;padding:12px 14px;border-radius:14px}.fb.ok{background:var(--gl)}.fb.no{background:var(--errl)}
-.big{font-size:2rem;font-weight:800}
-.highlight-cell{background-color:var(--gl)!important;font-weight:bold;border:2px solid var(--g)!important}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+th{background:var(--soft);font-weight:700}
+th.ltr{text-align:center;color:var(--mute);font-size:.75rem;padding:4px;background:var(--soft)}
+.rn{background:var(--soft);color:var(--mute);text-align:center;font-weight:600;width:40px}
+.cmp td,.cmp th{white-space:normal}
+td.hl{background:var(--hl);font-weight:700;box-shadow:inset 0 0 0 2px var(--ac)}
+code,.mono{font-family:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace}
+code{background:var(--soft);padding:2px 7px;border-radius:7px;font-size:.88em}
+.note{background:var(--soft);border-radius:14px;padding:12px 16px;color:var(--mute);font-size:.92rem}
+.logic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:14px 0}
+.logic div{border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+button{font:inherit;font-weight:700;border:0;cursor:pointer;border-radius:14px;padding:11px 22px;color:#fff;background:linear-gradient(135deg,var(--ac),var(--ac2));transition:transform .15s,box-shadow .15s,opacity .15s}
+button:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 8px 18px rgba(6,182,212,.3)}
+button:disabled{opacity:.45;cursor:not-allowed}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--vi);outline-offset:2px}
+button.ghost{background:var(--soft);color:var(--ink)}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.tab{background:var(--soft);color:var(--ink);padding:8px 18px;border-radius:999px}
+.tab[aria-pressed=true]{background:linear-gradient(135deg,var(--vi),#4f46e5);color:#fff}
+.ctl{display:flex;flex-wrap:wrap;gap:14px;margin:8px 0 14px}
+.ctl>div{flex:1 1 220px}
+label{display:block;font-size:.82rem;font-weight:700;color:var(--mute);margin-bottom:6px}
+select,input{width:100%;font:inherit;color:var(--ink);padding:11px 13px;border:1.5px solid var(--line);border-radius:13px;background:var(--card)}
+.fx{font-family:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;background:#0f172a;color:#6ee7b7;border-radius:16px;padding:15px 18px;margin:12px 0;overflow-x:auto;white-space:nowrap;font-size:.93rem}
+.steps{margin:10px 0 0;padding:0;list-style:none;display:grid;gap:8px}
+.steps li{display:flex;gap:12px;align-items:flex-start;background:var(--soft);border-radius:14px;padding:10px 14px}
+.steps b{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--ac);color:#fff;font-size:.82rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(42px,1fr));gap:8px;margin-bottom:18px}
+.gb{height:42px;padding:0;border-radius:12px;background:var(--soft);color:var(--ink);font-size:.92rem}
+.gb.ok{background:var(--ac);color:#fff}.gb.no{background:#ef4444;color:#fff}.gb.skip{background:#f59e0b;color:#fff}
+.gb.cur{box-shadow:0 0 0 3px var(--card),0 0 0 6px var(--vi)}
+.acts>span{display:flex;gap:8px;flex-wrap:wrap}
+.qh{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.qn{font-weight:800;color:var(--vi)}
+.tag{background:var(--skb);color:var(--skt);font-size:.78rem;font-weight:700;border-radius:999px;padding:2px 12px}
+.qt{font-size:1.12rem;line-height:1.5;margin:8px 0 14px}
+.opts{display:grid;gap:10px}
+.opt{display:flex;gap:14px;align-items:center;text-align:left;width:100%;background:var(--card);color:var(--ink);border:1.5px solid var(--line);font-weight:500;padding:12px 16px}
+.opt b{flex:none;width:30px;height:30px;border-radius:10px;display:grid;place-items:center;background:var(--soft);font-size:.85rem}
+.opt .mono{font-size:.84rem;overflow-wrap:anywhere}
+.opt:hover:not(:disabled){border-color:var(--vi)}
+.opt.sel{border-color:var(--vi);background:rgba(124,58,237,.08)}.opt.sel b{background:var(--vi);color:#fff}
+.opt.ok{border-color:var(--ac);background:var(--okb)}.opt.ok b{background:var(--ac);color:#fff}
+.opt.no{border-color:#ef4444;background:var(--nob)}.opt.no b{background:#ef4444;color:#fff}
+.opt:disabled{opacity:1;cursor:default}
+.fb{margin:14px 0 0;padding:13px 16px;border-radius:14px}
+.fb.ok{background:var(--okb);color:var(--okt)}.fb.no{background:var(--nob);color:var(--not)}
+.acts{display:flex;justify-content:space-between;gap:10px;margin-top:16px}
+.big{font-size:3rem;font-weight:800;line-height:1;background:linear-gradient(135deg,var(--ac),var(--vi));-webkit-background-clip:text;background-clip:text;color:transparent}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.badges span{border-radius:999px;padding:4px 14px;font-weight:700;font-size:.85rem}
+.b1{background:var(--okb);color:var(--okt)}.b2{background:var(--nob);color:var(--not)}.b3{background:var(--skb);color:var(--skt)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
 <main>
 <header class="hero">
 <div class="top"><span class="brand">🛒 Toko Nusantara Mart</span>
-<div class="tools"><div class="seg" role="group" aria-label="Language / Bahasa"><button data-l="en">EN</button><button data-l="id">ID</button></div><button class="ic" id="th" aria-label="Theme">◐</button></div></div>
-<h1 data-i="h1"></h1><p class="sub" data-i="sub"></p><p class="tp" data-i="tp"></p>
+<div class="tools"><div class="seg" role="group" aria-label="Language"><button data-l="0">EN</button><button data-l="1">ID</button></div><button class="ic" id="th" aria-label="Theme">◐</button></div></div>
+<h1 data-i="h1"></h1><p class="sub" data-i="sub"></p>
+<div class="pills"><span data-i="p1"></span><span data-i="p2"></span><span data-i="p3"></span></div>
 </header>
 
 <section>
 <h2><i>1</i><span data-i="s1h"></span></h2>
 <p data-i="s1p"></p>
-<div class="tw"><table id="tb"></table></div>
-<p data-i="rd"></p>
+<div class="tw"><table class="cmp" id="tb"></table></div>
+<div class="logic"><div data-i="lg1"></div><div data-i="lg2"></div></div>
 <p class="note" data-i="nt"></p>
 </section>
 
 <section>
 <h2><i>2</i><span data-i="s2h"></span></h2>
 <p data-i="s2p"></p>
-<div class="ctl">
-<div><label for="ds" data-i="lc"></label><select id="ds"></select></div>
-<div><label data-i="lt"></label><div class="chips" id="ty"></div></div>
-</div>
-<div class="formula-box">
-  <span style="color:var(--mute)">Formula: </span><span id="formulaText" class="formula-code"></span>
-</div>
-<div class="tw"><table id="sheetTable"></table></div>
-<div class="res" id="hasil" aria-live="polite"></div>
+<div class="tabs" id="tabs"></div>
+<div class="ctl"><div><label for="sr" id="lr"></label><select id="sr"></select></div><div id="scw"><label for="sc" data-i="lm"></label><select id="sc"></select></div></div>
+<div class="fx" id="fx"></div>
+<div id="sheet"></div>
+<ol class="steps" id="steps"></ol>
 </section>
 
 <section>
 <h2><i>3</i><span data-i="s3h"></span></h2>
-<div class="bar"><i id="bar" style="width:0"></i></div>
+<p data-i="s3p"></p>
 <div id="quiz"></div>
 </section>
 </main>
 <script>
-const $=id=>document.getElementById(id);
-let lang="en",ty="idx",qi=0,sc=0;
-try{lang=localStorage.getItem("lg")||"en";const t=localStorage.getItem("th");if(t)document.documentElement.dataset.theme=t}catch(e){}
-const T=a=>a[lang==="en"?0:1];
+const $=i=>document.getElementById(i),rnd=n=>Math.random()*n|0,shuf=a=>{a=[...a];for(let i=a.length;i>1;){const j=rnd(i--);[a[i],a[j]]=[a[j],a[i]]}return a},pick=(a,k)=>shuf(a).slice(0,k);
+let lang=0;
+try{lang=+localStorage.getItem("lg2")||0;const t=localStorage.getItem("th");if(t)document.documentElement.dataset.theme=t}catch(e){}
+const T=a=>a[lang],fmt=n=>n.toLocaleString(lang?"id-ID":"en-US"),L="ABCDE";
 
 const S={
-title:[
-  "Learning INDEX & MATCH · Toko Nusantara Mart",
-  "Belajar INDEX & MATCH · Toko Nusantara Mart"
-],
-h1:[
-  "Mastering INDEX & MATCH",
-  "Menguasai INDEX & MATCH"
-],
-sub:[
-  "VLOOKUP has limits (cannot look left). INDEX & MATCH is the ultimate dynamic duo in Excel & Google Sheets to lookup any data flexibly.",
-  "VLOOKUP memiliki batas (tidak bisa mencari ke kiri). INDEX & MATCH adalah kombinasi paling fleksibel di Excel & Google Sheets."
-],
-tp:[
-  "<b>Learning objective:</b> Students can master INDEX and MATCH formulas to replace VLOOKUP and solve complex data lookup challenges.",
-  "<b>Tujuan pembelajaran:</b> Peserta didik dapat menguasai rumus INDEX dan MATCH untuk menggantikan VLOOKUP dan menyelesaikan pencarian data kompleks."
-],
-s1h:[
-  "Why INDEX & MATCH?",
-  "Mengapa INDEX & MATCH?"
-],
-s1p:[
-  "Understand the power of combining two formulas: <b>MATCH</b> finds the position (row/column number), and <b>INDEX</b> retrieves the value at that position.",
-  "Pahami kekuatan gabungan dua rumus: <b>MATCH</b> mencari posisi (nomor baris/kolom), dan <b>INDEX</b> mengambil nilai pada posisi tersebut."
-],
-th:[
-  ["Feature / Aspect", "Fitur / Aspek"],
-  ["VLOOKUP", "VLOOKUP"],
-  ["INDEX & MATCH", "INDEX & MATCH"]
-],
-rd:[
-  [
-    "<b>Core Logic:</b> <br>1. <code>MATCH(lookup_value, lookup_array, 0)</code> returns the relative row index.<br>2. <code>INDEX(return_array, row_number)</code> fetches the final value from that row.",
-    "<b>Logika Dasar:</b> <br>1. <code>MATCH(nilai_cari, tabel_cari, 0)</code> mengembalikan nomor baris relatif.<br>2. <code>INDEX(tabel_hasil, nomor_baris)</code> mengambil nilai akhir dari baris tersebut."
-  ],
-  [
-    "<b>Core Logic:</b> <br>1. <code>MATCH(lookup_value, lookup_array, 0)</code> returns the relative row index.<br>2. <code>INDEX(return_array, row_number)</code> fetches the final value from that row.",
-    "<b>Logika Dasar:</b> <br>1. <code>MATCH(nilai_cari, tabel_cari, 0)</code> mengembalikan nomor baris relatif.<br>2. <code>INDEX(tabel_hasil, nomor_baris)</code> mengambil nilai akhir dari baris tersebut."
-  ]
-],
-nt:[
-  [
-    "Tip: In Excel, INDEX & MATCH never breaks when you insert or delete columns in the middle of your table!",
-    "Tips: Di Excel, INDEX & MATCH tidak akan rusak saat Anda menyisipkan atau menghapus kolom di tengah tabel!"
-  ],
-  [
-    "Tip: In Excel, INDEX & MATCH never breaks when you insert or delete columns in the middle of your table!",
-    "Tips: Di Excel, INDEX & MATCH tidak akan rusak saat Anda menyisipkan atau menghapus kolom di tengah tabel!"
-  ]
-],
-s2h:[
-  "Interactive Formula Simulator",
-  "Simulator Formula Interaktif"
-],
-s2p:[
-  "Select a lookup scenario to see how INDEX & MATCH evaluates step-by-step and highlights the active cells in the data table.",
-  "Pilih skenario pencarian untuk melihat bagaimana INDEX & MATCH mengevaluasi langkah demi langkah dan menyorot sel aktif di tabel data."
-],
-lc:[
-  "Lookup Scenario (Goal)",
-  "Skenario Pencarian (Tujuan)"
-],
-lt:[
-  "Formula Type",
-  "Jenis Formula"
-],
-ty:[
-  ["INDEX + MATCH (Basic)", "INDEX + MATCH (Dasar)"],
-  ["Left Lookup (Search to Left)", "Left Lookup (Pencarian ke Kiri)"],
-  ["2D Matrix (Row & Column)", "2D Matrix (Baris & Kolom)"]
-],
-s3h:[
-  "Practice Quiz (40 Questions)",
-  "Latihan Soal (40 Soal)"
-],
-qn:[
-  "Question",
-  "Soal"
-],
-of:[
-  "of",
-  "dari"
-],
-sc:[
-  "Score:",
-  "Skor:"
-],
-again:[
-  "Try again",
-  "Ulangi latihan"
-],
-next:[
-  "Next question",
-  "Soal berikutnya"
-],
-fin:[
-  "See score",
-  "Lihat skor"
-],
-co:[
-  "Correct.",
-  "Benar."
-],
-wr:[
-  "Not quite.",
-  "Belum tepat."
-],
-r3:[
-  "Perfect! You are a master of INDEX & MATCH formulas.",
-  "Sempurna! Kamu sudah sangat menguasai rumus INDEX & MATCH."
-],
-r2:[
-  "Good job! Review your mistakes and try again.",
-  "Bagus. Ulangi bagian yang masih keliru, lalu coba lagi."
-],
-r1:[
-  "Review the simulator section, practice the formula logic, and try again.",
-  "Pelajari lagi bagian simulator, pahami logikanya, lalu ulangi latihan."
-]
+title:["Learn INDEX & MATCH · Toko Nusantara Mart","Belajar INDEX & MATCH · Toko Nusantara Mart"],
+h1:["Learn INDEX & MATCH","Belajar INDEX & MATCH"],
+sub:["VLOOKUP cannot look to the left. INDEX & MATCH can look in any direction.","VLOOKUP tidak bisa mencari ke kiri. INDEX & MATCH bisa mencari ke arah mana saja."],
+p1:["🎯 Goal: replace VLOOKUP","🎯 Tujuan: pengganti VLOOKUP"],p2:["🧪 Try the simulator","🧪 Coba simulatornya"],p3:["📝 New cases every try","📝 Kasus baru setiap percobaan"],
+s1h:["Why INDEX & MATCH?","Mengapa INDEX & MATCH?"],
+s1p:["Two small formulas work as a team. MATCH finds the position. INDEX gets the value at that position.","Dua rumus kecil bekerja sebagai tim. MATCH mencari posisi. INDEX mengambil nilai pada posisi itu."],
+th:[["Question","Pertanyaan"],["VLOOKUP","VLOOKUP"],["INDEX & MATCH","INDEX & MATCH"]],
+lg1:["<b>Step 1: MATCH</b><br><code>MATCH(what to find, where to look, 0)</code><br>It gives a position number.","<b>Langkah 1: MATCH</b><br><code>MATCH(yang dicari, tempat mencari, 0)</code><br>Hasilnya nomor posisi."],
+lg2:["<b>Step 2: INDEX</b><br><code>INDEX(where the answer is, position)</code><br>It gives the answer.","<b>Langkah 2: INDEX</b><br><code>INDEX(tempat jawaban, posisi)</code><br>Hasilnya jawaban."],
+nt:["💡 Tip: The last 0 in MATCH means exact match. Always use it for IDs and names.","💡 Tips: Angka 0 terakhir di MATCH berarti exact match. Selalu pakai untuk ID dan nama."],
+s2h:["Formula Simulator","Simulator Rumus"],
+s2p:["Choose a type and an item. The yellow cells show how the formula works.","Pilih jenis dan item. Sel kuning menunjukkan cara kerja rumus."],
+ty:[["Basic","Dasar"],["Look left","Cari ke kiri"],["Row & column","Baris & kolom"]],
+lp:["Product","Produk"],lb:["Branch","Cabang"],lm:["Month","Bulan"],
+s3h:["Practice Quiz","Latihan Soal"],
+s3p:["Pick an answer, then press OK. Use the number grid to jump to any question. Skipped questions turn yellow.","Pilih jawaban, lalu tekan OK. Pakai kotak nomor untuk pindah ke soal mana saja. Soal yang dilewati berwarna kuning."],
+fn:["Finish","Selesai"],cf:["Some questions are not answered. Finish anyway?","Masih ada soal yang belum dijawab. Tetap selesai?"],
+qn:["Question","Soal"],of:["of","dari"],sb:["Skipped before","Pernah dilewati"],
+skip:["Skip","Lewati"],skipf:["Skip for good","Lewati permanen"],ok:["OK","OK"],next:["Next","Lanjut"],fin:["See score","Lihat skor"],
+cor:["Correct!","Benar!"],wrg:["Not quite.","Belum tepat."],
+c:["correct","benar"],w:["wrong","salah"],s:["skipped","dilewati"],
+r3:["Perfect! You are an INDEX & MATCH master.","Sempurna! Kamu sudah menguasai INDEX & MATCH."],
+r2:["Good job! Check your mistakes and try again.","Bagus! Periksa kesalahanmu, lalu coba lagi."],
+r1:["Read the lesson and use the simulator, then try again.","Baca materi dan pakai simulator, lalu coba lagi."],
+nm:["Enter your full name:","Masukkan nama lengkapmu:"],ph:["e.g. Budi Santoso","mis. Budi Santoso"],
+send:["Send score to teacher","Kirim nilai ke guru"],sending:["Sending...","Mengirim..."],sent:["Sent ✓","Terkirim ✓"],
+okm:["<b>Success!</b> Your score is saved.","<b>Berhasil!</b> Nilaimu sudah tercatat."],
+failm:["Could not send. Please try again.","Gagal mengirim. Silakan coba lagi."],need:["Please enter your name first.","Mohon isi nama terlebih dahulu."],
+again:["New questions","Soal baru"],unit:["Sales in million Rp","Penjualan dalam juta Rp"]
 };
-
 const ROWS=[
-[
-  ["Look left capability", "Kemampuan mencari ke kiri"],
-  ["❌ Cannot look to the left of the lookup column.", "❌ Tidak bisa mencari ke sebelah kiri kolom kunci."],
-  ["✅ Can lookup in any direction (left, right, up, down).", "✅ Bisa mencari ke arah mana saja (kiri, kanan, atas, bawah)."]
-],
-[
-  ["Column insertion/deletion", "Sisip/Hapus kolom tabel"],
-  ["⚠️ Breaks easily if columns are inserted/deleted (hardcoded index number).", "⚠️ Mudah rusak/error jika kolom disisip/dihapus (karena nomor kolom statis)."],
-  ["🛡️ Safe! Uses dynamic column references via MATCH.", "🛡️ Aman! Menggunakan referensi dinamis melalui MATCH."]
-],
-[
-  ["Large dataset performance", "Performa data besar"],
-  ["🐢 Slower on huge datasets when searching wide columns.", "🐢 Lebih lambat pada data ukuran raksasa dengan kolom lebar."],
-  ["⚡ Faster because it only evaluates specific arrays.", "⚡ Lebih cepat karena mengevaluasi array spesifik."]
-]
+[["Look to the left","Mencari ke kiri"],["❌ Cannot","❌ Tidak bisa"],["✅ Can","✅ Bisa"]],
+[["Insert a column","Menyisipkan kolom"],["⚠️ Can break (fixed column number)","⚠️ Bisa rusak (nomor kolom tetap)"],["🛡️ Safe (points to the column)","🛡️ Aman (menunjuk kolom langsung)"]],
+[["Big tables","Tabel besar"],["🐢 Can be slower","🐢 Bisa lebih lambat"],["⚡ Often faster","⚡ Biasanya lebih cepat"]]
 ];
 
-const K={
-  ok:[
-    "Accurate calculation result.",
-    "Hasil perhitungan akurat."
-  ],
-  mid:[
-    "Valid formula syntax.",
-    "Sintaks rumus valid."
-  ],
-  no:[
-    "Check formula arguments.",
-    "Periksa argumen rumus."
-  ]
-};
+/* ---------- data ---------- */
+const P=[
+["P01",["Premium Rice 5kg","Beras Premium 5kg"],["Staples","Sembako"],65000,40],
+["P02",["Cooking Oil 2L","Minyak Goreng 2L"],["Staples","Sembako"],34000,25],
+["P03",["Sugar 1kg","Gula Pasir 1kg"],["Staples","Sembako"],16000,60],
+["P04",["Coffee Sachet","Kopi Sachet"],["Drinks","Minuman"],15000,200],
+["P05",["Instant Noodles","Mi Instan"],["Food","Makanan"],3500,150],
+["P06",["Mineral Water 600ml","Air Mineral 600ml"],["Drinks","Minuman"],4000,120],
+["P07",["Soy Sauce 250ml","Kecap Manis 250ml"],["Staples","Sembako"],12000,45],
+["P08",["Tea Bags","Teh Celup"],["Drinks","Minuman"],9000,80]];
+const BR=[["Solo",[30,35,42]],["Klaten",[22,25,28]],["Boyolali",[18,19,24]],["Sragen",[15,21,23]],["Karanganyar",[20,26,31]]];
+const MO=[["January","Januari"],["February","Februari"],["March","Maret"]];
+const H=[["ID","Product","Category","Price (Rp)","Stock"],["ID","Produk","Kategori","Harga (Rp)","Stok"]];
+const cell=(p,c)=>c==0?p[0]:c==1?T(p[1]):c==2?T(p[2]):c==3?fmt(p[3]):p[4];
+const prodRows=ps=>ps.map(p=>[0,1,2,3,4].map(c=>cell(p,c)));
+const mrows=(bs=BR)=>bs.map(b=>[b[0],...b[1]]);
+const mhead=()=>[T(["Branch / Month","Cabang / Bulan"]),...MO.map(T)];
+const sheet=(head,rows,hi=[])=>`<div class="tw"><table><thead><tr><th class="rn"></th>${head.map((_,i)=>`<th class="ltr">${L[i]}</th>`).join("")}</tr><tr><th class="rn">1</th>${head.map(h=>`<th>${h}</th>`).join("")}</tr></thead><tbody>${rows.map((r,i)=>`<tr><td class="rn">${i+2}</td>${r.map((c,j)=>`<td${hi.includes(i+","+j)?' class="hl"':""}>${c}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
 
-const SIM_DATA=[
-{
-  n:[
-    ["Find Price by ID (Standard)", "Cari Harga berdasarkan ID (Standar)"],
-    ["Find Price by ID (Standard)", "Cari Harga berdasarkan ID (Standar)"]
-  ],
-  headers:[
-    ["ID", "Product Name", "Category", "Price (IDR)", "Stock"],
-    ["ID", "Nama Produk", "Kategori", "Harga (IDR)", "Stok"]
-  ],
-  rows:[
-    ["P01", "Beras Premium 5kg", "Sembako", "65.000", "40"],
-    ["P02", "Minyak Goreng 2L", "Sembako", "34.000", "25"],
-    ["P03", "Gula Pasir 1kg", "Sembako", "16.000", "60"],
-    ["P04", "Kopi Sachet Merek A", "Minuman", "15.000", "200"]
-  ],
-  selectId: "P03",
-  formula: '=INDEX(D2:D5, MATCH("P03", A2:A5, 0))',
-  desc:[
-    [
-      "MATCH finds row 3. INDEX retrieves '16.000'.",
-      "MATCH menemukan baris 3. INDEX mengambil '16.000'."
-    ],
-    [
-      "MATCH finds row 3. INDEX retrieves '16.000'.",
-      "MATCH menemukan baris 3. INDEX mengambil '16.000'."
-    ]
-  ],
-  res: "16.000 (IDR)",
-  highlightRow: 3,
-  highlightCol: 3
-},
-{
-  n:[
-    ["Find Name by Price (Left Lookup)", "Cari Nama dari Harga (Pencarian ke Kiri)"],
-    ["Find Name by Price (Left Lookup)", "Cari Nama dari Harga (Pencarian ke Kiri)"]
-  ],
-  headers:[
-    ["ID", "Product Name", "Category", "Price (IDR)", "Stock"],
-    ["ID", "Nama Produk", "Kategori", "Harga (IDR)", "Stok"]
-  ],
-  rows:[
-    ["P01", "Beras Premium 5kg", "Sembako", "65.000", "40"],
-    ["P02", "Minyak Goreng 2L", "Sembako", "34.000", "25"],
-    ["P03", "Gula Pasir 1kg", "Sembako", "16.000", "60"],
-    ["P04", "Kopi Sachet Merek A", "Minuman", "15.000", "200"]
-  ],
-  selectId: "34.000",
-  formula: '=INDEX(B2:B5, MATCH(34000, D2:D5, 0))',
-  desc:[
-    [
-      "MATCH finds row 2. INDEX looks left and gets 'Minyak Goreng 2L'.",
-      "MATCH menemukan baris 2. INDEX melihat ke kiri dan mengambil 'Minyak Goreng 2L'."
-    ],
-    [
-      "MATCH finds row 2. INDEX looks left and gets 'Minyak Goreng 2L'.",
-      "MATCH menemukan baris 2. INDEX melihat ke kiri dan mengambil 'Minyak Goreng 2L'."
-    ]
-  ],
-  res: "Minyak Goreng 2L",
-  highlightRow: 2,
-  highlightCol: 1
-},
-{
-  n:[
-    ["2D Matrix Lookup (Row & Column)", "Pencarian Matrix 2D (Baris & Kolom)"],
-    ["2D Matrix Lookup (Row & Column)", "Pencarian Matrix 2D (Baris & Kolom)"]
-  ],
-  headers:[
-    ["Branch / Month", "Januari", "Februari", "Maret"],
-    ["Cabang / Bulan", "Januari", "Februari", "Maret"]
-  ],
-  rows:[
-    ["Cabang Solo", "30M", "35M", "42M"],
-    ["Cabang Klaten", "22M", "25M", "28M"],
-    ["Cabang Boyolali", "18M", "19M", "24M"]
-  ],
-  selectId: "Klaten / Februari",
-  formula: '=INDEX(B2:D4, MATCH("Cabang Klaten", A2:A4, 0), MATCH("Februari", B1:D1, 0))',
-  desc:[
-    [
-      "Row & Col MATCH locate intersection value '25M'.",
-      "MATCH baris & kolom menemukan perpotongan '25M'."
-    ],
-    [
-      "Row & Col MATCH locate intersection value '25M'.",
-      "MATCH baris & kolom menemukan perpotongan '25M'."
-    ]
-  ],
-  res: "25.000.000 (IDR)",
-  highlightRow: 2,
-  highlightCol: 2
-}
-];
-
-// 40 Soal Latihan: Level A2 (Simple English), Opsi jawaban seimbang panjangnya untuk mengecoh, tanpa XLOOKUP.
-const Q=[
-{
-  q:[
-    "What does the MATCH formula do in a spreadsheet?",
-    "Apa yang dilakukan oleh rumus MATCH di dalam lembar kerja?"
-  ],
-  o:[
-    [
-      "Calculates the total sum of numerical values inside a selected data range",
-      "Returns the relative position number of a target value inside a list range",
-      "Converts standard text characters into numerical currency format values",
-      "Deletes all repeated row entries automatically from a large data table"
-    ],
-    [
-      "Menghitung jumlah total nilai numerik di dalam rentang data terpilih",
-      "Mengembalikan nomor posisi relatif dari nilai target di dalam daftar rentang",
-      "Mengonversi karakter teks standar menjadi nilai format mata uang angka",
-      "Menghapus semua entri baris berulang secara otomatis dari tabel besar"
-    ]
-  ],
-  a: 1,
-  e:[
-    "MATCH returns the position number.",
-    "MATCH mengembalikan nomor posisi."
-  ]
-},
-{
-  q:[
-    "Which syntax is correct for an exact match lookup using MATCH?",
-    "Sintaks mana yang benar untuk pencarian exact match menggunakan MATCH?"
-  ],
-  o:[
-    [
-      "=MATCH(lookup_value, lookup_array, 0)",
-      "=MATCH(0, lookup_array, lookup_value)",
-      "=MATCH(lookup_array, lookup_value, 1)",
-      "=MATCH(lookup_value, 0, lookup_array)"
-    ],
-    [
-      "=MATCH(lookup_value, lookup_array, 0)",
-      "=MATCH(0, lookup_array, lookup_value)",
-      "=MATCH(lookup_array, lookup_value, 1)",
-      "=MATCH(lookup_value, 0, lookup_array)"
-    ]
-  ],
-  a: 0,
-  e:[
-    "The 3rd argument '0' means exact match.",
-    "Argumen ke-3 '0' berarti exact match."
-  ]
-},
-{
-  q:[
-    "Why do we use INDEX and MATCH instead of VLOOKUP sometimes?",
-    "Mengapa kita terkadang menggunakan INDEX dan MATCH alih-alih VLOOKUP?"
-  ],
-  o:[
-    [
-      "VLOOKUP requires expensive computer hardware processing memory power",
-      "VLOOKUP can only read numbers and cannot process text characters",
-      "VLOOKUP cannot look to the left, but INDEX & MATCH works anywhere",
-      "VLOOKUP only operates if you install extra plugin macro extensions"
-    ],
-    [
-      "VLOOKUP memerlukan daya memori pemrosesan perangkat keras yang mahal",
-      "VLOOKUP hanya dapat membaca angka dan tidak dapat memproses teks",
-      "VLOOKUP tidak bisa ke kiri, tetapi INDEX & MATCH bekerja di mana saja",
-      "VLOOKUP hanya beroperasi jika Anda memasang ekstensi makro plugin ekstra"
-    ]
-  ],
-  a: 2,
-  e:[
-    "INDEX & MATCH can look to the left easily.",
-    "INDEX & MATCH dapat mencari ke sebelah kiri dengan mudah."
-  ]
-},
-{
-  q:[
-    "What is the result of the formula =INDEX(A1:C5, 2, 3)?",
-    "Apa hasil dari rumus =INDEX(A1:C5, 2, 3)?"
-  ],
-  o:[
-    [
-      "Counts all cells from row 1 to column 5 inside the worksheet table",
-      "Gets the value at row 2 and column 3 inside the specified range",
-      "Multiplies the number 2 by the number 3 inside the table range",
-      "Finds the text string containing number 2 inside column 3 cells"
-    ],
-    [
-      "Menghitung semua sel dari baris 1 ke kolom 5 di dalam tabel lembar kerja",
-      "Mengambil nilai pada baris 2 dan kolom 3 di dalam rentang yang ditentukan",
-      "Mengalikan angka 2 dengan angka 3 di dalam rentang tabel lembar kerja",
-      "Mencari string teks yang berisi angka 2 di dalam sel kolom 3"
-    ]
-  ],
-  a: 1,
-  e:[
-    "INDEX retrieves the value at the specific row and column intersection.",
-    "INDEX mengambil nilai pada perpotongan baris dan kolom tertentu."
-  ]
-},
-{
-  q:[
-    "What happens to a VLOOKUP formula when you insert a new column?",
-    "Apa yang terjadi pada rumus VLOOKUP saat Anda menyisipkan kolom baru?"
-  ],
-  o:[
-    [
-      "All existing spreadsheet table data gets completely deleted instantly",
-      "It can return wrong data or #REF! errors because column indexes shift",
-      "The application program closes automatically due to sudden conflicts",
-      "Nothing happens because VLOOKUP updates new column references safely"
-    ],
-    [
-      "Semua data tabel lembar kerja yang ada terhapus sepenuhnya secara instan",
-      "Rumus dapat mengembalikan data salah atau error #REF! karena indeks bergeser",
-      "Program aplikasi tertutup secara otomatis karena konflik yang tiba-tiba",
-      "Tidak ada yang terjadi karena VLOOKUP memperbarui referensi kolom dengan aman"
-    ]
-  ],
-  a: 1,
-  e:[
-    "Hardcoded column numbers in VLOOKUP break when columns are added.",
-    "Nomor kolom statis di VLOOKUP rusak saat kolom ditambahkan."
-  ]
-},
-{
-  q:[
-    "How does INDEX & MATCH react when you insert a new table column?",
-    "Bagaimana reaksi INDEX & MATCH saat Anda menyisipkan kolom tabel baru?"
-  ],
-  o:[
-    [
-      "It stays safe because MATCH checks header positions dynamically",
-      "All formulas turn into normal plain text strings permanently",
-      "It shows a permanent #N/A error message on every connected cell",
-      "It changes the entire spreadsheet design into a pie chart format"
-    ],
-    [
-      "Rumus tetap aman karena MATCH memeriksa posisi header secara dinamis",
-      "Semua rumus berubah menjadi string teks biasa yang normal secara permanen",
-      "Rumus menampilkan pesan error #N/A permanen pada setiap sel yang terhubung",
-      "Rumus mengubah seluruh desain spreadsheet menjadi format diagram lingkaran"
-    ]
-  ],
-  a: 0,
-  e:[
-    "Dynamic matching keeps formulas safe during column changes.",
-    "Pencocokan dinamis menjaga rumus tetap aman saat perubahan kolom."
-  ]
-},
-{
-  q:[
-    "What does the number '0' mean in the MATCH function?",
-    "Apa arti angka '0' di dalam fungsi MATCH?"
-  ],
-  o:[
-    [
-      "Tells the sheet to sort all table items in alphabetical order",
-      "Requires the formula to search for an exact match value",
-      "Finds the biggest number that is smaller than the target value",
-      "Ignores search rules and returns the first table row item"
-    ],
-    [
-      "Memberitahu lembar kerja untuk mengurutkan semua item tabel secara alfabet",
-      "Mengharuskan rumus untuk mencari nilai pencarian yang persis sama",
-      "Mencari angka terbesar yang lebih kecil daripada nilai target pencarian",
-      "Mengabaikan aturan pencarian dan mengembalikan item baris tabel pertama"
-    ]
-  ],
-  a: 1,
-  e:[
-    "0 tells MATCH to find an exact match.",
-    "0 memberitahu MATCH untuk mencari exact match."
-  ]
-},
-{
-  q:[
-    "What error does MATCH show if it cannot find your lookup value?",
-    "Error apa yang ditampilkan MATCH jika tidak dapat menemukan nilai pencarian Anda?"
-  ],
-  o:[
-    [
-      "Shows a #VALUE! error because cell data types do not match",
-      "Shows a #REF! error because target cell references are deleted",
-      "Shows a #N/A error because the search value is not available",
-      "Shows a #DIV/0! error because a number was divided by zero"
-    ],
-    [
-      "Menampilkan error #VALUE! karena tipe data sel tidak cocok satu sama lain",
-      "Menampilkan error #REF! karena referensi sel target telah terhapus",
-      "Menampilkan error #N/A karena nilai pencarian tersebut tidak tersedia",
-      "Menampilkan error #DIV/0! karena sebuah angka dibagi dengan angka nol"
-    ]
-  ],
-  a: 2,
-  e:[
-    "#N/A means the value is not available.",
-    "#N/A berarti nilai tersebut tidak tersedia."
-  ]
-},
-{
-  q:[
-    "Can you use INDEX and MATCH to do a 2-dimensional lookup?",
-    "Bisakah Anda menggunakan INDEX dan MATCH untuk melakukan pencarian 2 dimensi?"
-  ],
-  o:[
-    [
-      "Yes, by putting MATCH inside both row and column parts of INDEX",
-      "Only if you save your active spreadsheet document as a PDF file",
-      "No, because INDEX and MATCH only work for simple vertical lists",
-      "Only inside online cloud Google Sheets and never in Microsoft Excel"
-    ],
-    [
-      "Ya, dengan memasukkan MATCH di dalam bagian baris dan kolom INDEX",
-      "Hanya jika Anda menyimpan dokumen spreadsheet aktif sebagai file PDF",
-      "Tidak, karena INDEX dan MATCH hanya bekerja untuk daftar vertikal sederhana",
-      "Hanya di dalam Google Sheets cloud online dan tidak pernah di Microsoft Excel"
-    ]
-  ],
-  a: 0,
-  e:[
-    "Nesting MATCH for row and column creates a 2D lookup.",
-    "Menyarangkan MATCH untuk baris dan kolom membuat pencarian 2D."
-  ]
-},
-{
-  q:[
-    "What is the main benefit of using INDEX and MATCH together?",
-    "Apa manfaat utama menggunakan INDEX dan MATCH secara bersamaan?"
-  ],
-  o:[
-    [
-      "Makes colorful graphic charts automatically without user settings",
-      "Provides great flexibility, safety, and powerful lookup features",
-      "Speeds up document printing output directly to network printers",
-      "Removes the need to write complex nested IF logical formulas"
-    ],
-    [
-      "Membuat grafik visual berwarna secara otomatis tanpa pengaturan pengguna",
-      "Menyediakan fleksibilitas besar, keamanan, dan fitur pencarian yang kuat",
-      "Mempercepat keluaran pencetakan dokumen secara langsung ke printer jaringan",
-      "Menghilangkan kebutuhan untuk menulis rumus logika IF bertingkat yang rumit"
-    ]
-  ],
-  a: 1,
-  e:[
-    "INDEX & MATCH offers high flexibility and structural safety.",
-    "INDEX & MATCH menawarkan fleksibilitas tinggi dan keamanan struktural."
-  ]
-},
-// Soal 11 hingga 40 dengan variasi unik, level A2, opsi seimbang mengecoh
-...Array.from({length: 30}, (_, i) => {
-  const n = i + 1;
-  const questionsList = [
-    {
-      en: "Which part of INDEX and MATCH tells us the row number?",
-      id: "Bagian mana dari INDEX dan MATCH yang memberi tahu kita nomor baris?",
-      optsEn: [
-        "The MATCH formula part finds the relative row position",
-        "The INDEX function automatically generates random rows",
-        "The outer spreadsheet border defines table row numbers",
-        "The cell font color decides the total row count index"
-      ],
-      optsId: [
-        "Bagian rumus MATCH menemukan posisi baris relatif",
-        "Fungsi INDEX secara otomatis menghasilkan baris acak",
-        "Batas luar spreadsheet mendefinisikan nomor baris tabel",
-        "Warna font sel memutuskan indeks total hitungan baris"
-      ],
-      ans: 0
-    },
-    {
-      en: "What type of data can MATCH search for?",
-      id: "Jenis data apa yang dapat dicari oleh MATCH?",
-      optsEn: [
-        "It can search for both numbers and text values easily",
-        "It can only look for pictures and inserted chart objects",
-        "It only works with blank empty unformatted worksheet cells",
-        "It only reads color fills applied to table background cells"
-      ],
-      optsId: [
-        "Ia dapat mencari nilai angka maupun teks dengan mudah",
-        "Ia hanya dapat mencari gambar dan objek grafik yang disisipkan",
-        "Ia hanya bekerja dengan sel lembar kerja kosong tanpa format",
-        "Ia hanya membaca isian warna yang diterapkan ke sel latar belakang"
-      ],
-      ans: 0
-    },
-    {
-      en: "Is MATCH case-sensitive for normal text lookups?",
-      id: "Apakah MATCH sensitif terhadap huruf besar-kecil untuk pencarian teks normal?",
-      optsEn: [
-        "Yes, it always requires exact capital letters strictly",
-        "No, normal text lookups are usually not case-sensitive",
-        "Yes, lowercase letters will always cause a system crash",
-        "No, text format is completely ignored by spreadsheet apps"
-      ],
-      optsId: [
-        "Ya, rumus selalu membutuhkan huruf besar persis secara ketat",
-        "Tidak, pencarian teks normal biasanya tidak sensitif huruf",
-        "Ya, huruf kecil akan selalu menyebabkan sistem mengalami crash",
-        "Tidak, format teks sepenuhnya diabaikan oleh aplikasi spreadsheet"
-      ],
-      ans: 1
-    },
-    {
-      en: "Where should the lookup array be placed in MATCH?",
-      id: "Di mana array pencarian harus ditempatkan di dalam MATCH?",
-      optsEn: [
-        "Inside a single row or a single column data range",
-        "Across ten different workbook files stored in a folder",
-        "Inside a printer settings dialog box menu window",
-        "Inside the computer operating system desktop folder"
-      ],
-      optsId: [
-        "Di dalam rentang data satu baris atau satu kolom tunggal",
-        "Di sepuluh file workbook berbeda yang disimpan dalam satu folder",
-        "Di dalam jendela menu kotak dialog pengaturan printer perangkat",
-        "Di dalam folder desktop sistem operasi komputer yang digunakan"
-      ],
-      ans: 0
-    },
-    {
-      en: "Can INDEX return an entire row or column range?",
-      id: "Bisakah INDEX mengembalikan seluruh rentang baris atau kolom?",
-      optsEn: [
-        "Yes, by leaving row or column arguments blank or zero",
-        "No, it can only return one single cell value at a time",
-        "Yes, but it requires a special payment license upgrade",
-        "No, tables are not allowed to use full rows in formulas"
-      ],
-      optsId: [
-        "Ya, dengan membiarkan argumen baris atau kolom kosong atau nol",
-        "Tidak, ia hanya dapat mengembalikan satu nilai sel tunggal saja",
-        "Ya, tetapi itu memerlukan peningkatan lisensi pembayaran khusus",
-        "Tidak, tabel tidak diizinkan menggunakan baris penuh di dalam rumus"
-      ],
-      ans: 0
-    },
-    {
-      en: "What does the INDEX function need to work properly?",
-      id: "Apa yang dibutuhkan fungsi INDEX agar dapat bekerja dengan baik?",
-      optsEn: [
-        "A data reference range and a row number position",
-        "An internet connection and an active cloud browser",
-        "A password to unlock the locked worksheet sheet tab",
-        "A picture file attached to the spreadsheet header"
-      ],
-      optsId: [
-        "Rentang referensi data dan posisi nomor baris tujuan",
-        "Koneksi internet dan browser cloud aktif yang terhubung",
-        "Kata sandi untuk membuka kunci tab lembar kerja yang terkunci",
-        "File gambar yang dilampirkan ke bagian header spreadsheet"
-      ],
-      ans: 0
-    },
-    {
-      en: "Why is formula nesting important for INDEX and MATCH?",
-      id: "Mengapa penyarangan rumus (nesting) penting untuk INDEX dan MATCH?",
-      optsEn: [
-        "Because MATCH finds the position for INDEX to use",
-        "Because Excel refuses to calculate single formulas alone",
-        "Because nesting makes file sizes smaller on hard drives",
-        "Because it deletes unused cells to save computer memory"
-      ],
-      optsId: [
-        "Karena MATCH menemukan posisi untuk digunakan oleh INDEX",
-        "Karena Excel menolak untuk menghitung rumus tunggal sendirian",
-        "Karena penyarangan membuat ukuran file lebih kecil di hard drive",
-        "Karena ia menghapus sel yang tidak terpakai untuk hemat memori"
-      ],
-      ans: 0
-    },
-    {
-      en: "What happens if row number in INDEX is zero?",
-      id: "Apa yang terjadi jika nomor baris di dalam INDEX bernilai nol?",
-      optsEn: [
-        "It returns the entire column array of values",
-        "It shows a #VALUE! error message immediately",
-        "It deletes the table data permanently from the sheet",
-        "It closes the workbook file without saving changes"
-      ],
-      optsId: [
-        "Ia mengembalikan seluruh array kolom yang berisi nilai data",
-        "Ia langsung menampilkan pesan kesalahan berupa #VALUE!",
-        "Ia menghapus data tabel secara permanen dari lembar kerja",
-        "Ia menutup file workbook tanpa menyimpan perubahan terbaru"
-      ],
-      ans: 0
-    },
-    {
-      en: "Can you combine INDEX and MATCH with IFERROR?",
-      id: "Bisakah Anda menggabungkan INDEX dan MATCH dengan IFERROR?",
-      optsEn: [
-        "Yes, to handle missing values and show custom text",
-        "No, error handling functions do not accept lookup formulas",
-        "Yes, but only if the spreadsheet language is set to French",
-        "No, combining formulas causes permanent data corruption"
-      ],
-      optsId: [
-        "Ya, untuk menangani nilai yang hilang dan menampilkan teks kustom",
-        "Tidak, fungsi penanganan error tidak menerima rumus pencarian",
-        "Ya, tetapi hanya jika bahasa spreadsheet diatur ke bahasa Prancis",
-        "Tidak, menggabungkan rumus menyebabkan korupsi data permanen"
-      ],
-      ans: 0
-    },
-    {
-      en: "What is the best way to learn INDEX and MATCH?",
-      id: "Apa cara terbaik untuk mempelajari INDEX dan MATCH?",
-      optsEn: [
-        "Practice with real sample tables and test formulas step by step",
-        "Read thick computer books without ever opening a spreadsheet",
-        "Memorize all error codes without trying any practical exercise",
-        "Ask other people to write every formula for your homework"
-      ],
-      optsId: [
-        "Berlatih dengan tabel sampel nyata dan uji rumus langkah demi langkah",
-        "Membaca buku komputer tebal tanpa pernah membuka aplikasi spreadsheet",
-        "Menghafal semua kode error tanpa mencoba latihan praktis apa pun",
-        "Meminta orang lain untuk menuliskan setiap rumus untuk PR Anda"
-      ],
-      ans: 0
-    }
-  ];
-
-  // Map 30 items cycling through the list template with distinct variations
-  const item = questionsList[i % questionsList.length];
-  return {
-    q: [
-      `Advanced INDEX & MATCH question #${n}: ${item.en}`,
-      `Soal lanjutan INDEX & MATCH #${n}: ${item.id}`
-    ],
-    o: [item.optsEn, item.optsId],
-    a: item.ans,
-    e: [
-      `Review concept explanation for question #${n}.`,
-      `Tinjau penjelasan konsep untuk soal #${n}.`
-    ]
-  };
-})
-];
-
-function show(){
-  const z=$("quiz");$("bar").style.width=(qi/Q.length*100)+"%";
-  if(qi>=Q.length){
-    z.innerHTML=`
-      <div class="big">${T(S.sc)} ${sc} / ${Q.length}</div>
-      <p>${T(S[sc===Q.length?"r3":sc>=28?"r2":"r1"])}</p>
-      <div style="margin: 16px 0;">
-        <label for="studentName" style="margin-bottom:6px; font-weight:600;"></label>
-        <input type="text" id="studentName" placeholder="e.g. Budi Santoso" style="width:100%; padding:10px 12px; border:1.5px solid var(--line); border-radius:12px; background:var(--solid); color:var(--ink); margin-bottom:10px; font:inherit;">
-        <button id="sendScoreBtn" style="width:100%;"></button>
-        <div id="sendStatus" style="margin-top:8px; font-size:0.9rem;"></div>
-      </div>
-      <button id="re">${T(S.again)}</button>
-    `;
-    
-    $("studentName").previousElementSibling.textContent = lang==="en" ? "Enter Your Full Name:" : "Masukkan Nama Lengkap Anda:";
-    $("sendScoreBtn").textContent = lang==="en" ? "Submit Score to Teacher" : "Kirim Nilai ke Guru";
-
-    $("sendScoreBtn").onclick = () => {
-      const namaSiswa = $("studentName").value.trim();
-      if(!namaSiswa) { alert(lang==="en" ? "Please enter your name first!" : "Mohon masukkan nama Anda terlebih dahulu!"); return; }
-      $("sendScoreBtn").disabled = true;
-      $("sendStatus").textContent = lang==="en" ? "Sending score..." : "Mengirim nilai...";
-
-      const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxxZD6et1eM3XyqO9BKHYEEGKu67Mo56BIXAi0gqEQOjZVZewHob9fgvMv1gn6XG38K/exec";
-
-      fetch(WEB_APP_URL, { method: "POST", mode: "no-cors", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ nama: namaSiswa, skor: sc, total: Q.length }) })
-      .then(() => {
-        $("sendStatus").style.color = "var(--g)";
-        $("sendStatus").innerHTML = lang==="en" ? "<b>Success!</b> Your score has been recorded." : "<b>Berhasil!</b> Nilai Anda telah tercatat di rekap guru.";
-        $("sendScoreBtn").textContent = lang==="en" ? "Submitted ✓" : "Terkirim ✓";
-      })
-      .catch(err => {
-        $("sendStatus").style.color = "var(--err)";
-        $("sendStatus").textContent = lang==="en" ? "Failed to send. Please try again." : "Gagal mengirim. Silakan coba lagi.";
-        $("sendScoreBtn").disabled = false;
-      });
-    };
-
-    $("re").onclick=()=>{qi=0;sc=0;show()};return;
-  }
-  const q=Q[qi];
-  const opts = q.o[lang==="en"?0:1];
-  z.innerHTML=(q.c?`<div class="cw">${q.c()}</div>`:"")+`<p><b>${T(S.qn)} ${qi+1} ${T(S.of)} ${Q.length}.</b> ${T(q.q)}</p>`+opts.map((x,k)=>`<button class="opt" data-k="${k}">${x}</button>`).join("")+`<div id="fb"></div>`;
-  z.querySelectorAll(".opt").forEach(b=>b.onclick=()=>done(+b.dataset.k===q.a,b));
+/* ---------- simulator ---------- */
+const sim={t:0,r:2,c:1};
+function drawSim(){
+const{t,r,c}=sim,m=t==2;
+$("tabs").innerHTML=S.ty.map((x,i)=>`<button class="tab" data-t="${i}" aria-pressed="${i==t}">${T(x)}</button>`).join("");
+$("lr").textContent=T(m?S.lb:S.lp);$("scw").style.display=m?"":"none";
+$("sr").innerHTML=(m?BR.map(b=>b[0]):P.map(p=>p[0]+" · "+T(p[1]))).map((x,i)=>`<option value="${i}"${i==r?" selected":""}>${x}</option>`).join("");
+$("sc").innerHTML=MO.map((x,i)=>`<option value="${i}"${i==c?" selected":""}>${T(x)}</option>`).join("");
+let f,st,tb;
+if(m){const b=BR[r],v=b[1][c];
+f=`=INDEX(B2:D6, MATCH("${b[0]}", A2:A6, 0), MATCH("${T(MO[c])}", B1:D1, 0))`;
+st=[T([`The first MATCH finds "${b[0]}" at position ${r+1}. This is the row.`,`MATCH pertama menemukan "${b[0]}" di posisi ${r+1}. Ini adalah baris.`]),
+T([`The second MATCH finds "${T(MO[c])}" at position ${c+1}. This is the column.`,`MATCH kedua menemukan "${T(MO[c])}" di posisi ${c+1}. Ini adalah kolom.`]),
+T([`INDEX returns the cell where row ${r+1} and column ${c+1} meet: ${v}.`,`INDEX mengambil sel tempat baris ${r+1} dan kolom ${c+1} bertemu: ${v}.`])];
+tb=sheet(mhead(),mrows(),[r+",0",r+","+(c+1)]);
+}else{const p=P[r],a=t==0;
+const key=a?`"${p[0]}"`:p[3],val=a?fmt(p[3]):T(p[1]);
+f=a?`=INDEX(D2:D9, MATCH("${p[0]}", A2:A9, 0))`:`=INDEX(B2:B9, MATCH(${p[3]}, D2:D9, 0))`;
+st=[T([`MATCH looks for ${key} in column ${a?"A":"D"} and finds position ${r+1}.`,`MATCH mencari ${key} di kolom ${a?"A":"D"} dan menemukan posisi ${r+1}.`]),
+T([`INDEX goes to position ${r+1} in column ${a?"D":"B"}${a?"":" (on the left)"} and returns ${val}.`,`INDEX menuju posisi ${r+1} di kolom ${a?"D":"B"}${a?"":" (di sebelah kiri)"} dan mengambil ${val}.`])];
+tb=sheet(H[lang],prodRows(P),a?[r+",0",r+",3"]:[r+",3",r+",1"]);}
+$("fx").textContent=f;$("sheet").innerHTML=tb;
+$("steps").innerHTML=st.map((x,i)=>`<li><b>${i+1}</b><span>${x}</span></li>`).join("");
 }
 
-function done(ok,btn){
-  const q=Q[qi];if(ok)sc++;
-  document.querySelectorAll("#quiz .opt").forEach((b,k)=>{b.disabled=true;if(k===q.a)b.classList.add("ok");else if(b===btn)b.classList.add("no")});
-  $("fb").innerHTML=`<div class="fb ${ok?"ok":"no"}"><b>${T(ok?S.co:S.wr)}</b> ${T(q.e)}</div><button id="nx">${T(qi===Q.length-1?S.fin:S.next)}</button>`;
-  $("nx").focus();$("nx").onclick=()=>{qi++;show()};
+/* ---------- question generators ---------- */
+const mk=(ord,o,x)=>({...x,o:ord.map(i=>o[i]),a:ord.indexOf(0)});
+const R=(c,n=5)=>`${L[c]}2:${L[c]}${n}`;
+const sp=()=>pick(P,4).sort((a,b)=>a[0]<b[0]?-1:1);
+
+function g1(){const rs=sp(),t=rs[rnd(4)],tc=1+rnd(4),ord=shuf([0,1,2,3]);
+return()=>{const id=t[0],cn=H[lang][tc];
+const o=[`=INDEX(${R(tc)}, MATCH("${id}", ${R(0)}, 0))`,`=INDEX(${R(0)}, MATCH("${id}", ${R(tc)}, 0))`,`=INDEX(${R(tc)}, MATCH("${id}", ${R(0)}, 1))`,`=MATCH("${id}", ${R(0)}, 0)`];
+return mk(ord,o,{mono:1,tb:sheet(H[lang],prodRows(rs)),
+q:T([`Case: A customer asks for the "${cn}" of ${T(t[1])}. The ID is ${id}. Which formula is correct?`,`Kasus: Pelanggan menanyakan "${cn}" dari ${T(t[1])}. ID-nya ${id}. Rumus mana yang benar?`]),
+e:T([`MATCH finds ${id} in column A. INDEX returns the value from column ${L[tc]} (${cn}). The last 0 means exact match.`,`MATCH mencari ${id} di kolom A. INDEX mengambil nilai dari kolom ${L[tc]} (${cn}). Angka 0 di akhir berarti exact match.`])})}}
+
+function g2(){const rs=sp(),i=rnd(4),t=rs[i],tc=[1,3,4][rnd(3)],ord=shuf([0,1,2,3]);
+return()=>{const o=[cell(t,tc),...rs.filter(p=>p!==t).map(p=>cell(p,tc))];
+return mk(ord,o,{tb:sheet(H[lang],prodRows(rs)),f:`=INDEX(${R(tc)}, MATCH("${t[0]}", ${R(0)}, 0))`,
+q:T(["What is the result of this formula?","Apa hasil rumus ini?"]),
+e:T([`MATCH finds ${t[0]} at position ${i+1}. INDEX returns item ${i+1} from column ${L[tc]}: ${cell(t,tc)}.`,`MATCH menemukan ${t[0]} di posisi ${i+1}. INDEX mengambil item ke-${i+1} dari kolom ${L[tc]}: ${cell(t,tc)}.`])})}}
+
+function g3(){const rs=sp(),t=rs[rnd(4)],ord=shuf([0,1,2,3]);
+return()=>{const pr=t[3],o=[`=INDEX(${R(1)}, MATCH(${pr}, ${R(3)}, 0))`,`=VLOOKUP(${pr}, A2:D5, 2, 0)`,`=INDEX(${R(3)}, MATCH(${pr}, ${R(1)}, 0))`,`=INDEX(${R(1)}, MATCH(${pr}, ${R(0)}, 0))`];
+return mk(ord,o,{mono:1,tb:sheet(H[lang],prodRows(rs)),
+q:T([`Case: You know the price is ${fmt(pr)}. You want the product name. The name is on the LEFT of the price. Which formula works?`,`Kasus: Kamu tahu harganya ${fmt(pr)}. Kamu ingin mencari nama produk. Nama ada di sebelah KIRI harga. Rumus mana yang berhasil?`]),
+e:T(["The price is in column D, so MATCH must search column D. INDEX then returns column B on the left. VLOOKUP cannot look left.","Harga ada di kolom D, jadi MATCH harus mencari di kolom D. INDEX lalu mengambil kolom B di sebelah kiri. VLOOKUP tidak bisa mencari ke kiri."])})}}
+
+function g4(){const bs=pick(BR,3),bi=rnd(3),mi=rnd(3),ord=shuf([0,1,2,3]);
+return()=>{const b=bs[bi][0],m=T(MO[mi]),M=(x,y)=>`MATCH("${x}", ${y}, 0)`;
+const o=[`=INDEX(B2:D4, ${M(b,"A2:A4")}, ${M(m,"B1:D1")})`,`=INDEX(B2:D4, ${M(m,"B1:D1")}, ${M(b,"A2:A4")})`,`=INDEX(B2:D4, ${M(b,"A1:A4")}, ${M(m,"B1:D1")})`,`=INDEX(B2:D4, ${M(b,"A2:A4")})`];
+return mk(ord,o,{mono:1,tb:sheet(mhead(),mrows(bs))+`<p class="note">${T(S.unit)}</p>`,
+q:T([`Case: The owner wants the sales of ${b} in ${m}. Which formula is correct?`,`Kasus: Pemilik ingin tahu penjualan cabang ${b} pada bulan ${m}. Rumus mana yang benar?`]),
+e:T(["INDEX needs the row first, then the column. The first MATCH finds the row. The second MATCH finds the column.","INDEX butuh baris dulu, lalu kolom. MATCH pertama mencari baris. MATCH kedua mencari kolom."])})}}
+
+function g5(){const bs=pick(BR,3),bi=rnd(3),mi=rnd(3),ord=shuf([0,1,2,3]),cv=bs[bi][1][mi];
+const others=pick([...new Set(bs.flatMap(b=>b[1]))].filter(v=>v!==cv),3);
+return()=>mk(ord,[cv,...others],{tb:sheet(mhead(),mrows(bs))+`<p class="note">${T(S.unit)}</p>`,
+f:`=INDEX(B2:D4, MATCH("${bs[bi][0]}", A2:A4, 0), MATCH("${T(MO[mi])}", B1:D1, 0))`,
+q:T(["What is the result of this formula?","Apa hasil rumus ini?"]),
+e:T([`The row is position ${bi+1} (${bs[bi][0]}). The column is position ${mi+1} (${T(MO[mi])}). The answer is ${cv}.`,`Barisnya posisi ${bi+1} (${bs[bi][0]}). Kolomnya posisi ${mi+1} (${T(MO[mi])}). Jawabannya ${cv}.`])})}
+
+function g6(){const rs=sp(),i=rnd(4),pos=i+1,ord=shuf([0,1,2,3]);
+return()=>mk(ord,[pos,pos+1,pos+2,pos+3],{tb:sheet(H[lang],prodRows(rs)),f:`=MATCH("${rs[i][0]}", ${R(0)}, 0)`,
+q:T(["What number does this formula return?","Angka berapa yang dihasilkan rumus ini?"]),
+e:T([`MATCH counts from the first cell in the range (A2). It does not count the header. So ${rs[i][0]} is at position ${pos}, not row ${pos+1}.`,`MATCH menghitung dari sel pertama dalam rentang (A2). Judul kolom tidak dihitung. Jadi ${rs[i][0]} ada di posisi ${pos}, bukan baris ${pos+1}.`])})}
+
+/* concept + case bank: correct answer is always first */
+const CON=[
+["What does MATCH do?","Apa fungsi MATCH?",["It gives the position number of a value in a list","It adds all the numbers in a list","It deletes repeated rows","It changes numbers into text"],["Memberi nomor posisi suatu nilai dalam daftar","Menjumlahkan semua angka dalam daftar","Menghapus baris yang berulang","Mengubah angka menjadi teks"],"MATCH returns a position number, like 1, 2 or 3.","MATCH menghasilkan nomor posisi, seperti 1, 2, atau 3."],
+["In MATCH, which last argument means exact match?","Pada MATCH, argumen terakhir mana yang berarti exact match?",["0","1","-1","TRUE"],["0","1","-1","TRUE"],"0 tells MATCH to find the exact value.","0 memerintahkan MATCH mencari nilai yang persis sama."],
+["What does =INDEX(A1:C5, 2, 3) return?","Apa hasil =INDEX(A1:C5, 2, 3)?",["The value in row 2, column 3 of the range","The value in row 3, column 2 of the range","The sum of 2 and 3","The number of cells in the range"],["Nilai di baris 2, kolom 3 dalam rentang","Nilai di baris 3, kolom 2 dalam rentang","Jumlah dari 2 dan 3","Banyak sel dalam rentang"],"INDEX takes the row number first, then the column number.","INDEX mengambil nomor baris dulu, lalu nomor kolom."],
+["Case: The manager adds a new column in the middle of the table. Which formula is safer?","Kasus: Manajer menambah kolom baru di tengah tabel. Rumus mana yang lebih aman?",["INDEX & MATCH, because it points to the exact column","VLOOKUP with a fixed column number like 4","Both break at the same time","Both are always safe"],["INDEX & MATCH, karena menunjuk kolom yang tepat","VLOOKUP dengan nomor kolom tetap seperti 4","Keduanya rusak bersamaan","Keduanya selalu aman"],"VLOOKUP uses a fixed number, so it can pick the wrong column. INDEX & MATCH points to the column itself.","VLOOKUP memakai nomor tetap, jadi bisa mengambil kolom yang salah. INDEX & MATCH menunjuk kolomnya langsung."],
+["Case: MATCH shows #N/A for the ID P09. What is the most likely reason?","Kasus: MATCH menampilkan #N/A untuk ID P09. Apa penyebab yang paling mungkin?",["P09 is not in the lookup range","The table has too many rows","The font is too small","The file is not saved"],["P09 tidak ada di rentang pencarian","Tabel punya terlalu banyak baris","Ukuran huruf terlalu kecil","File belum disimpan"],"#N/A means not available. MATCH cannot find P09.","#N/A berarti tidak tersedia. MATCH tidak menemukan P09."],
+["Case: You want to show \"Not found\" instead of #N/A. What can you use?","Kasus: Kamu ingin menampilkan \"Tidak ditemukan\" sebagai ganti #N/A. Apa yang bisa dipakai?",["IFERROR around the formula","SUM around the formula","A bigger font","A new sheet"],["IFERROR di luar rumus","SUM di luar rumus","Huruf yang lebih besar","Sheet baru"],"IFERROR shows your own text when the formula gives an error.","IFERROR menampilkan teks buatanmu saat rumus menghasilkan error."],
+["How many MATCH functions do you need to find a value by row name and column name?","Berapa fungsi MATCH yang dibutuhkan untuk mencari nilai berdasarkan nama baris dan nama kolom?",["Two: one for the row, one for the column","One","Zero","Three"],["Dua: satu untuk baris, satu untuk kolom","Satu","Nol","Tiga"],"One MATCH finds the row. Another MATCH finds the column.","Satu MATCH mencari baris. MATCH lainnya mencari kolom."],
+["Case: The ID column is on the right of the answer column. Which formula can still find the answer?","Kasus: Kolom ID ada di sebelah kanan kolom jawaban. Rumus mana yang tetap bisa mencari jawabannya?",["INDEX & MATCH","VLOOKUP","Neither one","Only a calculator"],["INDEX & MATCH","VLOOKUP","Tidak ada","Hanya kalkulator"],"INDEX & MATCH can look left. VLOOKUP cannot.","INDEX & MATCH bisa mencari ke kiri. VLOOKUP tidak bisa."]];
+const mkc=r=>{const ord=shuf([0,1,2,3]);return()=>mk(ord,r[2+lang],{q:r[lang],e:r[4+lang]})};
+
+/* ---------- quiz ---------- */
+let Q,cur,st,ans,sel,fin;
+function newQuiz(){
+Q=shuf([g1,g1,g1,g2,g2,g3,g3,g4,g4,g5,g6,g6].map(g=>g()).concat(CON.map(mkc)));
+cur=0;st=Q.map(()=>null);ans=Q.map(()=>-1);sel=-1;fin=false;drawQuiz();
+}
+const nextOpen=()=>{const n=Q.length;for(let k=1;k<n;k++){const i=(cur+k)%n;if(ans[i]<0)return i}return -1};
+function drawQuiz(){
+const z=$("quiz"),n=Q.length;
+const grid=`<div class="grid" role="group" aria-label="${T(S.qn)}">${Q.map((_,i)=>`<button class="gb ${st[i]||""} ${!fin&&i==cur?"cur":""}" data-g="${i}" aria-label="${T(S.qn)} ${i+1}">${i+1}</button>`).join("")}</div>`;
+const bind=()=>z.querySelectorAll(".gb").forEach(b=>b.onclick=()=>{cur=+b.dataset.g;sel=-1;fin=false;drawQuiz()});
+if(fin){
+const ok=st.filter(x=>x=="ok").length,no=st.filter(x=>x=="no").length,sx=n-ok-no;
+z.innerHTML=`${grid}<div class="big">${ok} / ${n}</div>
+<div class="badges"><span class="b1">${ok} ${T(S.c)}</span><span class="b2">${no} ${T(S.w)}</span><span class="b3">${sx} ${T(S.s)}</span></div>
+<p>${T(S[ok==n?"r3":ok>=n*.7?"r2":"r1"])}</p>
+<div style="margin:16px 0"><label for="nm">${T(S.nm)}</label><input id="nm" type="text" placeholder="${T(S.ph)}" style="margin-bottom:10px"><button id="snd" style="width:100%">${T(S.send)}</button><div id="ss" style="margin-top:8px;font-size:.9rem"></div></div>
+<button class="ghost" id="re">${T(S.again)}</button>`;
+bind();
+$("snd").onclick=()=>{const nama=$("nm").value.trim();
+if(!nama){alert(T(S.need));return}
+$("snd").disabled=true;$("ss").textContent=T(S.sending);
+const WEB_APP_URL="https://script.google.com/macros/s/AKfycbxxZD6et1eM3XyqO9BKHYEEGKu67Mo56BIXAi0gqEQOjZVZewHob9fgvMv1gn6XG38K/exec";
+fetch(WEB_APP_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/json"},body:JSON.stringify({nama,skor:ok,total:n})})
+.then(()=>{$("ss").style.color="var(--okt)";$("ss").innerHTML=T(S.okm);$("snd").textContent=T(S.sent)})
+.catch(()=>{$("ss").style.color="var(--not)";$("ss").textContent=T(S.failm);$("snd").disabled=false})};
+$("re").onclick=newQuiz;return}
+const q=Q[cur](),done=ans[cur]>=0,nx=nextOpen();
+z.innerHTML=`${grid}<div class="qh"><span class="qn">${T(S.qn)} ${cur+1} ${T(S.of)} ${n}</span></div>
+${q.tb||""}${q.f?`<div class="fx">${q.f}</div>`:""}
+<h3 class="qt">${q.q}</h3>
+<div class="opts">${q.o.map((x,i)=>`<button class="opt ${done?(i==q.a?"ok":i==ans[cur]?"no":""):(i==sel?"sel":"")}" data-k="${i}"${done?" disabled":""}><b>${"ABCD"[i]}</b><span class="${q.mono?"mono":""}">${x}</span></button>`).join("")}</div>
+${done?`<div class="fb ${ans[cur]==q.a?"ok":"no"}"><b>${T(ans[cur]==q.a?S.cor:S.wrg)}</b> ${q.e}</div>`:""}
+<div class="acts"><span>${done?"":`<button class="ghost" id="sk">${T(S.skip)}</button>`}${done&&nx<0?"":`<button class="ghost" id="fn">${T(S.fn)}</button>`}</span><button id="go"${!done&&sel<0?" disabled":""}>${T(done?(nx<0?S.fin:S.next):S.ok)}</button></div>`;
+bind();
+z.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{sel=+b.dataset.k;drawQuiz()});
+$("go").onclick=()=>{if(!done){ans[cur]=sel;st[cur]=sel==q.a?"ok":"no"}else if(nx<0)fin=true;else{cur=nx;sel=-1}drawQuiz()};
+if($("sk"))$("sk").onclick=()=>{st[cur]="skip";if(nx>=0)cur=nx;sel=-1;drawQuiz()};
+if($("fn"))$("fn").onclick=()=>{if(ans.includes(-1)&&!confirm(T(S.cf)))return;fin=true;drawQuiz()};
 }
 
-function fill(){
-  const v=$("ds").value||0;
-  $("ds").innerHTML=SIM_DATA.map((d,i)=>`<option value="${i}">${T(d.n)}</option>`).join("");
-  $("ds").value=v;
-}
-
-function chips(){
-  $("ty").innerHTML=["idx","left","matrix"].map((k,i)=>`<button class="chip" data-t="${k}" aria-pressed="${k===ty}">${T(S.ty[i])}</button>`).join("");
-}
-
-function drawSimulator(){
-  const d = SIM_DATA[ty === "idx" ? 0 : ty === "left" ? 1 : 2];
-  $("formulaText").textContent = d.formula;
-  
-  let html = `<thead><tr><th>#</th>`;
-  const headers = T(d.headers);
-  headers.forEach((h, idx) => {
-    html += `<th>${String.fromCharCode(65 + idx)}<br><span style="font-size:0.8rem; font-weight:normal;">${h}</span></th>`;
-  });
-  html += `</tr></thead><tbody>`;
-
-  d.rows.forEach((row, rIdx) => {
-    html += `<tr><td style="background:var(--gl); font-weight:600; text-align:center;">${rIdx + 1}</td>`;
-    row.forEach((cell, cIdx) => {
-      let isHighlight = (rIdx + 1 === d.highlightRow && cIdx === d.highlightCol);
-      html += `<td class="${isHighlight ? 'highlight-cell' : ''}">${cell}</td>`;
-    });
-    html += `</tr>`;
-  });
-  html += `</tbody>`;
-  $("sheetTable").innerHTML = html;
-
-  const descIdx = lang === "en" ? 0 : 1;
-  $("hasil").className = "res ok";
-  $("hasil").innerHTML = `<span class="bd">✓</span><span><b>${T(K.ok)}</b> ${d.desc[descIdx]} (<b>Result: ${d.res}</b>)</span>`;
-}
-
+/* ---------- page ---------- */
 function apply(){
-  document.documentElement.lang=lang;
-  document.title=T(S.title);
-  document.querySelectorAll("[data-i]").forEach(e=>e.innerHTML=T(S[e.dataset.i]));
-  document.querySelectorAll(".seg button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===lang));
-  
-  $("tb").innerHTML=`<tr>${S.th.map(h=>`<th>${T(h)}</th>`).join("")}</tr>`+ROWS.map(r=>`<tr>${r.map((c,j)=>`<td>${j?T(c):"<b>"+T(c)+"</b>"}</td>`).join("")}</tr>`).join("");
-  fill();
-  chips();
-  drawSimulator();
-  show();
+document.documentElement.lang=lang?"id":"en";document.title=T(S.title);
+document.querySelectorAll("[data-i]").forEach(e=>e.innerHTML=T(S[e.dataset.i]));
+document.querySelectorAll(".seg button").forEach(b=>b.setAttribute("aria-pressed",+b.dataset.l===lang));
+$("tb").innerHTML=`<tr>${S.th.map(h=>`<th>${T(h)}</th>`).join("")}</tr>`+ROWS.map(r=>`<tr>${r.map((c,j)=>`<td>${j?T(c):"<b>"+T(c)+"</b>"}</td>`).join("")}</tr>`).join("");
+drawSim();drawQuiz();
 }
-
-document.querySelector(".seg").onclick=e=>{
-  const b=e.target.closest("button");
-  if(!b)return;
-  lang=b.dataset.l;
-  try{localStorage.setItem("lg",lang)}catch(x){}
-  apply();
-};
-
-$("ty").onclick=e=>{
-  const b=e.target.closest("button");
-  if(!b)return;
-  ty=b.dataset.t;
-  chips();
-  drawSimulator();
-};
-
-$("ds").addEventListener("input",e=>{
-  const val = +$("ds").value;
-  ty = val === 0 ? "idx" : val === 1 ? "left" : "matrix";
-  chips();
-  drawSimulator();
-});
-
-$("th").onclick=()=>{
-  const r=document.documentElement,
-        cur=r.dataset.theme||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light"),
-        nx=cur==="dark"?"light":"dark";
-  r.dataset.theme=nx;
-  try{localStorage.setItem("th",nx)}catch(x){}
-};
-
-apply();
+document.querySelector(".seg").onclick=e=>{const b=e.target.closest("button");if(!b)return;lang=+b.dataset.l;try{localStorage.setItem("lg2",lang)}catch(x){}apply()};
+$("tabs").onclick=e=>{const b=e.target.closest("button");if(!b)return;sim.t=+b.dataset.t;sim.r=Math.min(sim.r,sim.t==2?4:7);drawSim()};
+$("sr").onchange=()=>{sim.r=+$("sr").value;drawSim()};
+$("sc").onchange=()=>{sim.c=+$("sc").value;drawSim()};
+$("th").onclick=()=>{const r=document.documentElement,cur=r.dataset.theme||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light"),nx=cur=="dark"?"light":"dark";r.dataset.theme=nx;try{localStorage.setItem("th",nx)}catch(x){}};
+newQuiz();apply();
 </script>
 </body>
 </html>
